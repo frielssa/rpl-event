@@ -1,84 +1,154 @@
----
-name: Pull Request
-about: Template untuk mengajukan perubahan (mendukung alur vibe coding)
-title: "[tipe] deskripsi singkat"
-labels: ""
-assignees: ""
+# Pull Request Template — RPL Event
+
+Panduan ini menjelaskan cara **menjalankan proyek**, **mengajukan perubahan lewat Pull Request (PR)**, serta **etika penggunaan AI (*vibe coding*)** di repositori RPL Event. Template ini otomatis dipakai GitHub setiap kali kamu membuka PR baru.
+
 ---
 
-## Ringkasan Perubahan
+## 1. Prasyarat
 
-<!-- Jelaskan secara singkat APA yang diubah dan MENGAPA. -->
+- **Git** terpasang → `git --version`
+- **Node.js 18+** dan **npm** → `node -v`, `npm -v`
+- **Akun GitHub** dan akses ke repo `frielssa/rpl-event`
+- (Opsional) Editor seperti VS Code.
 
-...
+---
 
-## Tipe Perubahan
+## 2. Menjalankan Proyek Secara Lokal
 
-- [ ] `feat` — Fitur baru
-- [ ] `fix` — Perbaikan bug
-- [ ] `docs` — Dokumentasi
-- [ ] `refactor` — Perubahan struktur tanpa mengubah perilaku
-- [ ] `style` — Format kode
-- [ ] `test` — Pengujian
-- [ ] `chore` — Konfigurasi/tugas rutin
+> Catatan: perintah berikut berlaku setelah kode aplikasi di-*scaffold* (lihat `docs/product-backlog.md` PB-02). Saat ini repo masih berisi dokumentasi.
 
-## Keterkaitan
+```powershell
+# 1. Clone repo
+git clone https://github.com/frielssa/rpl-event.git
+cd rpl-event
 
-<!-- Isi jika ada. Contoh: US-03, FR-05, PB-06, Issue #12 -->
+# 2. Install dependencies
+npm install
 
-- User Story / FR / Backlog Item: ...
-- Issue terkait: ...
+# 3. Jalankan development server
+npm run dev
+```
 
-## Perubahan Utama
+Buka `http://localhost:3000` di browser.
 
-<!-- Daftar perubahan penting. -->
-- ...
-- ...
+**Perintah lain:**
 
-## Cara Menguji (How to Test)
+| Perintah | Fungsi |
+|----------|--------|
+| `npm run dev` | Menjalankan *development server* |
+| `npm run build` | Build untuk produksi |
+| `npm run lint` | Memeriksa kualitas kode |
 
-<!-- Langkah-langkah agar reviewer bisa memverifikasi. -->
-1. Jalankan `npm install`
-2. Jalankan `npm run dev`
-3. Buka `http://localhost:3000`
-4. Lakukan: ...
-5. Ekspektasi: ...
+---
 
-## Tangkapan Layar / Rekaman (Opsional)
+## 3. Alur Kontribusi dengan Pull Request
 
-<!-- Tempel screenshot/GIF bila ada perubahan UI. -->
+Alur ini mensimulasikan kerja tim: **setiap perubahan dibuat di branch sendiri, lalu digabung ke `main` lewat PR**.
 
-## Penggunaan AI (*Vibe Coding*)
+### Langkah 1 — Ambil kode terbaru
 
-<!-- WAJIB diisi bila perubahan dibantu AI. -->
+```powershell
+git checkout main
+git pull origin main
+```
 
-- [ ] Perubahan ini **tidak** menggunakan bantuan AI
-- [ ] Perubahan ini **menggunakan** bantuan AI
+### Langkah 2 — Buat branch baru
 
-Jika menggunakan AI, jelaskan:
+Gunakan penamaan yang jelas:
 
-| Aspek | Keterangan |
-|-------|------------|
-| Alat AI | contoh: ChatGPT, Copilot, opencode |
-| Bagian yang dibantu | contoh: generate komponen form, dokumentasi |
-| Ringkasan prompt | contoh: "buat form registrasi dengan validasi kuota" |
-| Sudah ditinjau manusia? | Ya / Tidak |
-| Penjelasan logika | *Jelaskan singkat bahwa kamu memahami kode yang dihasilkan* |
+```powershell
+git checkout -b feature/registrasi-acara
+# variasi: docs/nama-dokumen, fix/nama-bug, chore/nama-tugas
+```
 
-> **Penting:** Jangan pernah menempelkan token, password, atau data pribadi ke prompt AI maupun ke PR ini.
+### Langkah 3 — Kerjakan perubahan & commit
 
-## Checklist
+```powershell
+git add .
+git commit -m "feat: tambah form registrasi acara"
+```
 
-- [ ] Kode sudah saya uji secara lokal.
-- [ ] Build berjalan tanpa error (`npm run build`).
-- [ ] Lint/format lolos (`npm run lint`).
-- [ ] Acceptance Criteria terkait terpenuhi.
-- [ ] Tampilan responsif (desktop & ponsel) bila menyentuh UI.
-- [ ] Dokumentasi terkait diperbarui (bila perlu).
-- [ ] Tidak ada secret/token/data sensitif yang ikut ter-commit.
-- [ ] Sudah ditinjau minimal 1 anggota lain (sesuai kesepakatan tim).
+Konvensi commit: `feat:`, `fix:`, `docs:`, `refactor:`, `style:`, `test:`, `chore:`.
 
-## Catatan untuk Reviewer
+### Langkah 4 — Push branch ke GitHub
 
-<!-- Hal yang ingin ditanyakan/ditegaskan ke reviewer. -->
-...
+```powershell
+git push -u origin feature/registrasi-acara
+```
+
+### Langkah 5 — Buka Pull Request
+
+1. Buka tautan yang muncul di terminal, **atau** buka repo → tab **Pull requests** → **New pull request**.
+2. Pilih branch `feature/registrasi-acara` → `main`.
+3. **Template PR otomatis terisi** — lengkapi semua bagian.
+4. Klik **Create pull request**.
+
+### Langkah 6 — Review & Merge
+
+- Minta minimal **1 anggota lain** meninjau (sesuai `docs/kesepakatan-tim.md`).
+- Perbaiki bila ada permintaan perubahan.
+- Setelah disetujui, klik **Merge pull request**.
+- (Opsional) Hapus branch setelah di-*merge*.
+
+---
+
+## 4. Mengisi Template PR
+
+Template di `.github/pull_request_template.md` berisi bagian berikut:
+
+| Bagian | Yang Diisi |
+|--------|-----------|
+| **Ringkasan Perubahan** | Apa yang diubah dan mengapa. |
+| **Tipe Perubahan** | Centang jenisnya (`feat`, `fix`, `docs`, dst.). |
+| **Keterkaitan** | User Story / FR / Backlog / Issue terkait. |
+| **Perubahan Utama** | Daftar poin perubahan. |
+| **Cara Menguji** | Langkah verifikasi untuk reviewer. |
+| **Screenshot** | Bukti visual untuk perubahan UI. |
+| **Penggunaan AI** | Transparansi bagian yang dibantu AI. |
+| **Checklist** | Uji lokal, build, lint, AC, responsif, keamanan. |
+| **Catatan Reviewer** | Hal yang perlu ditegaskan. |
+
+Isi dengan jujur dan ringkas. PR yang baik memudahkan reviewer memahami dan memverifikasi.
+
+---
+
+## 5. Etika *Vibe Coding* (Penggunaan AI)
+
+Proyek ini berbasis *vibe coding*, yaitu pengembangan yang dibantu AI. Agar tetap bertanggung jawab:
+
+**Boleh:**
+- Memakai AI untuk menyusun draf kode, dokumentasi, dan membantu *debugging*.
+- Meminta AI menjelaskan konsep atau *error*.
+
+**Wajib:**
+- **Memahami** kode yang dihasilkan sebelum di-*commit*.
+- Mengisi bagian **Penggunaan AI** pada template PR.
+- Meninjau & menguji hasil AI secara manual.
+
+**Dilarang:**
+- Menempelkan **token, password, API key, atau data pribadi** ke prompt AI.
+- Meng-*commit* kode AI yang tidak dipahami.
+- Mengklaim pekerjaan AI sebagai hasil sendiri tanpa transparansi.
+
+Penanggung jawab akhir tetap **anggota yang meng-commit** kode tersebut.
+
+---
+
+## 6. Tips & Troubleshooting
+
+| Masalah | Solusi |
+|---------|--------|
+| Push ditolak (*rejected*) | `git pull --rebase origin main` lalu push lagi. |
+| Lupa pindah branch | `git branch` untuk cek, `git checkout <branch>` untuk pindah. |
+| Konflik saat merge | Selesaikan konflik di editor, `git add .`, lalu lanjutkan merge. |
+| Template PR tidak muncul | Pastikan file ada di `.github/pull_request_template.md` pada branch `main`. |
+| Port 3000 dipakai | Hentikan proses lain atau jalankan `npm run dev -- -p 3001`. |
+
+---
+
+## 7. Referensi
+
+- `docs/kesepakatan-tim.md` — alur Git, peran, DoD.
+- `docs/srs.md` — kebutuhan fungsional & non-fungsional.
+- `docs/product-backlog.md` — daftar item pekerjaan & sprint.
+- `docs/elisitasi/user-story.md` — user story & acceptance criteria.
