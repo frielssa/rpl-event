@@ -149,6 +149,6 @@ Sebuah *story* dianggap selesai apabila:
 
 - Semua **Acceptance Criteria** terpenuhi.
 - Kode sudah di-*review* dan di-*merge* ke *branch* utama.
-- Tidak ada *error* saat build (`npm run build`).
+- Tidak ada *error* saat build (`bun run build`).
 - Tampilan responsif di desktop dan ponsel.
 - Dokumentasi singkat (jika perlu) diperbarui.

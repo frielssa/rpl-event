@@ -114,7 +114,8 @@ Saat ini pendaftaran acara sering dilakukan secara manual (formulir daring, pesa
 
 - Tersedia browser modern dan akses internet.
 - Admin memiliki data acara yang valid.
-- Bergantung pada ekosistem Next.js/Tailwind/npm.
+- Bergantung pada ekosistem Next.js/Tailwind/Bun.
+- Bun 1.4+ sebagai *package manager* & *runtime* (Node.js 18+ sebagai *fallback*).
 - Versi awal memakai *mock data*/JSON sebelum basis data.
 
 ## 11. Risiko

@@ -95,7 +95,7 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 
 - Pengguna memiliki akses internet dan browser modern.
 - Admin memiliki data acara yang valid.
-- Pengembangan bergantung pada Next.js, Tailwind CSS, dan ekosistem npm.
+- Pengembangan bergantung pada Next.js, Tailwind CSS, dan ekosistem Bun (Bun 1.4+ sebagai *package manager* & *runtime*).
 
 ---
 
@@ -129,7 +129,7 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 | **NFR-04** | Security | Validasi input & perlindungan data peserta. | Validasi *server-side*; tidak menampilkan data pribadi ke publik. |
 | **NFR-05** | Reliability | Data pendaftaran konsisten. | Tidak terjadi pendaftaran ganda/kuota melebihi batas. |
 | **NFR-06** | Maintainability | Kode terstruktur & mudah dipelihara. | Mengikuti *lint*, struktur folder baku, komponen modular. |
-| **NFR-07** | Portability | Mudah dijalankan/di-*deploy*. | Berjalan dengan `npm run dev`; dapat di-*deploy* statis. |
+| **NFR-07** | Portability | Mudah dijalankan/di-*deploy*. | Berjalan dengan `bun run dev`; dapat di-*deploy* statis. |
 | **NFR-08** | Compatibility | Kompatibel dengan browser modern. | Chrome, Firefox, Edge, Safari versi terbaru. |
 | **NFR-09** | Accessibility | Dapat digunakan semaksimal mungkin. | Kontras teks memadai, elemen form berlabel. |
 
@@ -149,7 +149,7 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 ### 5.3 Software Interfaces
 
 - **Next.js** (App Router) sebagai *framework*.
-- **Node.js/npm** untuk *build* & *runtime*.
+- **Bun 1.4+** untuk *package manager* & *runtime* (Node.js 18+ sebagai *fallback*).
 - Penyimpanan data: *mock data*/JSON (tahap awal); basis data menyusul.
 
 ### 5.4 Communication Interfaces

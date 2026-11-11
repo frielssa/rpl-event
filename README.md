@@ -35,13 +35,15 @@ RPL Event dibuat sebagai **tugas mata kuliah Rekayasa Perangkat Lunak (RPL)** be
 | **Next.js (App Router)** | *Framework* React untuk routing, rendering, dan struktur aplikasi web. |
 | **TypeScript** | Bahasa ber-*type* agar kode lebih aman dan mudah dipelihara. |
 | **Tailwind CSS** | *Utility-first CSS* untuk tampilan responsif dan konsisten. |
-| **Node.js + npm** | *Runtime* dan *package manager* untuk *development* & *build*. |
+| **Bun 1.4+** | *Runtime* + *package manager* (install, run, build). Node.js 18+ didukung sebagai *fallback*. |
 | **Mock data (JSON)** | Sumber data tahap awal sebelum integrasi basis data. |
 | **Git & GitHub** | *Version control*, kolaborasi, dan alur *pull request*. |
 
 ## Tutorial Instalasi (Singkat)
 
-**Prasyarat:** Node.js 18+, npm 9+, Git.
+**Prasyarat:** Bun 1.4+, Git. (Node.js 18+ opsional sebagai *fallback*.)
+
+> Belum punya Bun? Windows: `winget install Oven-sh.Bun` atau `powershell -c "irm bun.sh/install.ps1 | iex"`.
 
 ```bash
 # 1. Clone repositori
@@ -49,32 +51,44 @@ git clone https://github.com/frielssa/rpl-event.git
 cd rpl-event
 
 # 2. Install dependencies
-npm install
+bun install
 
 # 3. Jalankan development server
-npm run dev
+bun run dev
 ```
 
 Buka [http://localhost:3000](http://localhost:3000) di browser.
-
-> Catatan: perintah di atas berlaku setelah kode aplikasi di-*scaffold* (lihat `docs/product-backlog.md` PB-02). Saat ini repositori berfokus pada dokumentasi.
 
 **Perintah lain:**
 
 | Perintah | Fungsi |
 |----------|--------|
-| `npm run build` | Build untuk produksi |
-| `npm run lint` | Memeriksa kualitas kode |
+| `bun run build` | Build untuk produksi |
+| `bun run start` | Menjalankan hasil build |
+| `bun run lint` | Memeriksa kualitas kode |
 
-## Struktur Dokumen
+> *Fallback* npm: `npm install` lalu `npm run dev|build|lint`. Jangan mencampur *lockfile* (`bun.lock` vs `package-lock.json`).
+
+## Struktur Proyek & Dokumen
 
 ```
 rpl-event/
 ├── README.md                    # gambaran proyek (dokumen ini)
 ├── aturan proyek.md             # aturan & pedoman pengembangan
 ├── PRD.md                       # product requirements document
+├── package.json                 # dependensi & skrip
+├── bun.lock                     # lockfile Bun
+├── next.config.ts               # konfigurasi Next.js
+├── tsconfig.json                # konfigurasi TypeScript
+├── eslint.config.mjs            # konfigurasi ESLint
 ├── .github/
 │   └── pull_request_template.md # template & panduan PR
+├── src/
+│   ├── app/                     # halaman & routing (App Router)
+│   ├── components/              # komponen UI (menyusul)
+│   ├── lib/                     # helper & utilitas (menyusul)
+│   └── data/                    # mock data & model (menyusul)
+├── public/                      # aset statis
 └── docs/
     ├── elisitasi/
     │   ├── catatan-wawancara.md
@@ -105,7 +119,7 @@ rpl-event/
 ## Roadmap
 
 - [x] Inisialisasi repositori & dokumentasi
-- [ ] *Scaffold* Next.js + Tailwind
+- [x] *Scaffold* Next.js + Tailwind (via Bun)
 - [ ] Halaman daftar & detail acara
 - [ ] Alur pendaftaran + *generate* tiket
 - [ ] *Dashboard* admin (CRUD acara)

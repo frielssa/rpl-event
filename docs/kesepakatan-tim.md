@@ -7,7 +7,7 @@
 | Nama Proyek | RPL Event — Aplikasi Manajemen & Pendaftaran Acara |
 | Mata Kuliah | Rekayasa Perangkat Lunak (RPL) |
 | Repositori | https://github.com/frielssa/rpl-event |
-| Tech Stack | Next.js + TypeScript + Tailwind CSS |
+| Tech Stack | Next.js + TypeScript + Tailwind CSS + Bun |
 | Tanggal Dibuat | 11 November 2026 |
 | Versi Dokumen | 1.0 |
 
@@ -108,7 +108,7 @@ Sebuah tugas dianggap selesai apabila:
 
 - Semua *acceptance criteria* terpenuhi.
 - Kode lolos *review* minimal 1 anggota dan sudah di-*merge* ke `main`.
-- Build berjalan tanpa *error* (`npm run build`).
+- Build berjalan tanpa *error* (`bun run build`).
 - Tampilan responsif di desktop & ponsel.
 - Dokumentasi terkait diperbarui bila perlu.
 

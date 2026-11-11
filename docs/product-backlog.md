@@ -28,7 +28,7 @@ Dokumen ini memuat **Product Backlog** untuk aplikasi **RPL Event**, yaitu dafta
 | ID | Epic | Item / User Story | Deskripsi | FR | Prioritas | Estimasi | Status | Sprint |
 |----|------|-------------------|-----------|----|-----------|----------|--------|--------|
 | **PB-01** | EPIC-1 | Inisialisasi repo & dokumentasi | README, docs elisitasi, kesepakatan tim, SRS, backlog. | — | Must | 3 | Done | Sprint 0 |
-| **PB-02** | EPIC-1 | *Scaffold* Next.js + TypeScript + Tailwind | Setup proyek, struktur folder, konfigurasi lint. | — | Must | 3 | To Do | Sprint 1 |
+| **PB-02** | EPIC-1 | *Scaffold* Next.js + TypeScript + Tailwind via Bun | Setup proyek via Bun, struktur folder, konfigurasi lint. | — | Must | 3 | Done | Sprint 1 |
 | **PB-03** | EPIC-2 | Lihat daftar acara *(US-01)* | Halaman daftar acara *upcoming* + sisa kuota. | FR-02 | Must | 3 | To Do | Sprint 1 |
 | **PB-04** | EPIC-2 | Lihat detail acara *(US-02)* | Halaman detail acara + tombol daftar. | FR-03 | Must | 2 | To Do | Sprint 1 |
 | **PB-05** | EPIC-3 | Formulir pendaftaran *(US-03)* | Form nama, email, no HP + submit. | FR-04 | Must | 3 | To Do | Sprint 1 |
@@ -56,7 +56,7 @@ Dokumen ini memuat **Product Backlog** untuk aplikasi **RPL Event**, yaitu dafta
 - **Outcome:** README, elisitasi, kesepakatan tim, SRS, product backlog tersedia.
 
 ### Sprint 1 — Katalog & Pendaftaran
-- PB-02 *Scaffold* proyek
+- PB-02 *Scaffold* proyek (selesai via Bun)
 - PB-03 daftar acara · PB-04 detail acara
 - PB-05 formulir daftar · PB-06 validasi · PB-07 kode tiket
 - **Outcome:** peserta dapat melihat acara dan mendaftar hingga memperoleh kode tiket.
