@@ -30,3 +30,7 @@ flowchart TD
 - **FR:** FR-01, FR-10
 - **User Story:** US-07, US-08, US-09
 - **Use Case:** UC-06, UC-07, UC-08
+
+## Hasil Render (Verifikasi Visual)
+
+![Activity Diagram Kelola Acara](rendered/activity-kelola-acara.svg)

@@ -9,8 +9,9 @@ Dokumen ini mencatat **hasil verifikasi** seluruh diagram pada folder `docs/uml/
   1. **Pemeriksaan sintaks** — meninjau struktur blok `mermaid`, pasangan kurung, dan sintaks relasi.
   2. **Pemeriksaan kelengkapan** — memastikan setiap diagram punya awal/akhir, keputusan bercabang, dan aktor terhubung.
   3. **Pemeriksaan konsistensi** — mencocokkan aktor/use case/aktivitas dengan FR dan US.
+  4. **Render otomatis** — mengekstrak tiap blok Mermaid lalu merendernya ke SVG dengan `@mermaid-js/mermaid-cli` (`mmdc`) v11.17.1.
 
-> **Catatan:** Verifikasi dilakukan secara **statis** (tinjauan manual). Render visual dapat dicek di GitHub (Mermaid dirender otomatis) atau https://mermaid.live.
+> **Catatan:** Verifikasi dilakukan **statis + render otomatis**. Hasil render disimpan di `docs/uml/rendered/` dan ditampilkan pada tiap dokumen diagram.
 
 ## 2. Lingkup Diagram yang Diverifikasi
 
@@ -34,7 +35,9 @@ Dokumen ini mencatat **hasil verifikasi** seluruh diagram pada folder `docs/uml/
 | 3 | Pasangan kurung seimbang (`(( ))`, `[ ]`, `([ ])`, `{ }`) | ✅ |
 | 4 | Label relasi memakai sintaks `-->|teks|` atau `-.->|teks|` | ✅ |
 | 5 | `subgraph` memiliki penutup `end` | ✅ |
-| 6 | Tidak ada karakter yang merusak sintaks tanpa *escape* | ✅ |
+| 6 | Tidak ada karakter yang merusak sintaks tanpa *escape* | ✅ (diperbaiki) |
+
+> Pada render pertama ditemukan *parse error* akibat tanda kutip ganda (`"`) di dalam label node. Tanda kutip dihapus sehingga seluruh diagram berhasil dirender.
 
 ## 4. Verifikasi per Diagram
 
@@ -111,19 +114,52 @@ Dokumen ini mencatat **hasil verifikasi** seluruh diagram pada folder `docs/uml/
 | 2 | Alur pembatalan perlu eksplisit memperbarui kuota | Menambahkan **UC-15 Memperbarui Sisa Kuota** sebagai `include` dari UC-05. |
 | 3 | Pendaftaran punya sub-alur validasi & tiket | Menambahkan **UC-13** & **UC-14** sebagai `include` dari UC-03. |
 | 4 | Beberapa use case belum punya diagram aktivitas | Hanya alur utama/kritis yang dibuat activity diagram; sisanya diwakili skenario tekstual. |
+| 5 | Render menemukan *parse error* akibat tanda kutip ganda pada label node | Menghapus `"` pada label di `activity-ekspor-peserta.md`, `activity-pembatalan-pendaftaran.md`, dan `activity-pendaftaran-acara.md`; render ulang berhasil. |
 
-## 7. Keterbatasan
+## 7. Hasil Render Otomatis
 
-- Verifikasi bersifat **statis** dan belum melalui proses *render* otomatis di lingkungan ini.
-- Untuk memastikan tampilan akhir, buka file di GitHub (Mermaid dirender) atau https://mermaid.live.
-- Mermaid menyederhanakan notasi UML; beberapa elemen UML formal (mis. *extend*, *generalization*) tidak digunakan.
+Diuji dengan `@mermaid-js/mermaid-cli` (`mmdc`) **v11.17.1**.
 
-## 8. Kesimpulan
+| No | Diagram | File Hasil | Ukuran | Status |
+|----|---------|-----------|--------|--------|
+| 1 | Use Case | `rendered/use-case.svg` | 676.762 B | ✅ Berhasil |
+| 2 | Activity — Pendaftaran Acara | `rendered/activity-pendaftaran-acara.svg` | 34.931 B | ✅ Berhasil |
+| 3 | Activity — Pembatalan Pendaftaran | `rendered/activity-pembatalan-pendaftaran.svg` | 27.443 B | ✅ Berhasil |
+| 4 | Activity — Kelola Acara | `rendered/activity-kelola-acara.svg` | 37.532 B | ✅ Berhasil |
+| 5 | Activity — Ekspor Data Peserta | `rendered/activity-ekspor-peserta.svg` | 26.055 B | ✅ Berhasil |
 
-Seluruh **5 diagram Mermaid** dan **1 dokumen skenario** **lolos verifikasi struktur dan konsistensi**. Nama aktor, use case, serta alur aktivitas selaras dengan `docs/srs.md` dan `docs/elisitasi/user-story.md`. Diagram siap digunakan dan dapat dirender untuk keperluan laporan.
+**Ringkasan:** **5/5** diagram berhasil dirender tanpa error setelah perbaikan sintaks.
 
-## 9. Riwayat Versi
+### Galeri Hasil Render
+
+#### Use Case
+![Use Case](rendered/use-case.svg)
+
+#### Activity — Pendaftaran Acara
+![Pendaftaran Acara](rendered/activity-pendaftaran-acara.svg)
+
+#### Activity — Pembatalan Pendaftaran
+![Pembatalan Pendaftaran](rendered/activity-pembatalan-pendaftaran.svg)
+
+#### Activity — Kelola Acara
+![Kelola Acara](rendered/activity-kelola-acara.svg)
+
+#### Activity — Ekspor Data Peserta
+![Ekspor Data Peserta](rendered/activity-ekspor-peserta.svg)
+
+## 8. Keterbatasan
+
+- Notasi *use case* & *activity* pada Mermaid memakai `flowchart` (pendekatan), bukan notasi UML formal.
+- Beberapa elemen UML formal (mis. *extend*, *generalization*) tidak digunakan.
+- Ukuran SVG *use case* relatif besar (≈677 KB) karena gaya bawaan Mermaid.
+
+## 9. Kesimpulan
+
+Seluruh **5 diagram Mermaid** berhasil **dirender otomatis tanpa error** (setelah memperbaiki tanda kutip pada label node) dan konsisten dengan `docs/srs.md` serta `docs/elisitasi/user-story.md`. Hasil render tersedia di `docs/uml/rendered/`. Diagram dinyatakan **valid dan siap dipakai** untuk laporan.
+
+## 10. Riwayat Versi
 
 | Versi | Tanggal | Perubahan | Penulis |
 |-------|---------|-----------|---------|
 | 1.0 | 11-11-2026 | Verifikasi awal diagram UML | Tim RPL Event |
+| 1.1 | 11-11-2026 | Render otomatis & perbaikan sintaks label | Tim RPL Event |
