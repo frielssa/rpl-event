@@ -25,6 +25,11 @@ rpl-event/
 ├── README.md                  # gambaran proyek
 ├── aturan proyek.md           # aturan proyek (dokumen ini)
 ├── PRD.md                     # product requirements document
+├── package.json               # dependensi & skrip
+├── bun.lock                   # lockfile Bun
+├── next.config.ts             # konfigurasi Next.js
+├── tsconfig.json              # konfigurasi TypeScript
+├── eslint.config.mjs          # konfigurasi ESLint
 ├── .github/                   # template & konfigurasi GitHub
 │   └── pull_request_template.md
 ├── docs/                      # dokumentasi proyek
@@ -33,12 +38,18 @@ rpl-event/
 │   ├── kesepakatan-tim.md
 │   ├── product-backlog.md
 │   └── srs.md
-└── src/                       # kode aplikasi (menyusul saat scaffold)
+├── public/                    # aset statis
+└── src/                       # kode aplikasi
+    ├── app/                   # halaman & routing (App Router)
+    ├── components/            # komponen UI
+    ├── lib/                   # helper & utilitas
+    └── data/                  # mock data & model
 ```
 
 - File tingkat proyek (`README.md`, `aturan proyek.md`, `PRD.md`) berada di **root**.
 - Dokumentasi diletakkan di `docs/` sesuai kategorinya.
 - Kode aplikasi diletakkan di `src/`.
+- *Package manager* & *runtime*: **Bun** (lockfile `bun.lock`; jangan campur dengan `package-lock.json`).
 
 ## 4. Konvensi Penamaan File
 
@@ -99,7 +110,7 @@ Contoh: `docs: tambah pedoman wawancara`
 
 - Setiap fitur harus memenuhi *acceptance criteria* terkait.
 - Lakukan uji lokal sebelum membuka PR.
-- Build wajib lolos (`npm run build`) dan lint bersih (`npm run lint`).
+- Build wajib lolos (`bun run build`) dan lint bersih (`bun run lint`).
 - Perubahan UI harus responsif (desktop & ponsel).
 
 ## 10. Keamanan & Data

@@ -7,7 +7,7 @@ Panduan ini menjelaskan cara **menjalankan proyek**, **mengajukan perubahan lewa
 ## 1. Prasyarat
 
 - **Git** terpasang → `git --version`
-- **Node.js 18+** dan **npm** → `node -v`, `npm -v`
+- **Bun 1.4+** → `bun -v` (Node.js 18+ opsional sebagai *fallback*)
 - **Akun GitHub** dan akses ke repo `frielssa/rpl-event`
 - (Opsional) Editor seperti VS Code.
 
@@ -23,21 +23,23 @@ git clone https://github.com/frielssa/rpl-event.git
 cd rpl-event
 
 # 2. Install dependencies
-npm install
+bun install
 
 # 3. Jalankan development server
-npm run dev
+bun run dev
 ```
 
 Buka `http://localhost:3000` di browser.
+
+> Gunakan **Bun** sebagai *package manager*. Jangan mencampur `bun.lock` dengan `package-lock.json`/`yarn.lock`.
 
 **Perintah lain:**
 
 | Perintah | Fungsi |
 |----------|--------|
-| `npm run dev` | Menjalankan *development server* |
-| `npm run build` | Build untuk produksi |
-| `npm run lint` | Memeriksa kualitas kode |
+| `bun run dev` | Menjalankan *development server* |
+| `bun run build` | Build untuk produksi |
+| `bun run lint` | Memeriksa kualitas kode |
 
 ---
 
@@ -142,7 +144,7 @@ Penanggung jawab akhir tetap **anggota yang meng-commit** kode tersebut.
 | Lupa pindah branch | `git branch` untuk cek, `git checkout <branch>` untuk pindah. |
 | Konflik saat merge | Selesaikan konflik di editor, `git add .`, lalu lanjutkan merge. |
 | Template PR tidak muncul | Pastikan file ada di `.github/pull_request_template.md` pada branch `main`. |
-| Port 3000 dipakai | Hentikan proses lain atau jalankan `npm run dev -- -p 3001`. |
+| Port 3000 dipakai | Hentikan proses lain atau jalankan `bun run dev -- -p 3001`. |
 
 ---
 
