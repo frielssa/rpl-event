@@ -2,6 +2,21 @@
 
 Aplikasi berbasis web untuk mengelola acara (*event*) dan pendaftaran peserta. Peserta dapat melihat daftar acara, mendaftar, dan mendapatkan kode tiket; admin/*event organizer* (EO) dapat membuat acara, mengatur kuota, dan memantau peserta.
 
+## Informasi Pengembang
+
+| Nama | NIM |
+|------|-----|
+| **M Syafril Hayaddi** | **24554010003** |
+
+## Tujuan Pembuatan
+
+RPL Event dibuat sebagai **tugas mata kuliah Rekayasa Perangkat Lunak (RPL)** berbasis *vibe coding*. Tujuannya:
+
+1. Menyatukan proses pendaftaran acara yang masih manual (formulir, chat, spreadsheet) ke dalam satu sistem web.
+2. Mengurangi duplikasi data dan kesalahan hitung kuota.
+3. Menyediakan kode tiket sebagai bukti pendaftaran yang seragam.
+4. Mempermudah admin merekap dan mengekspor data peserta.
+
 ## Fitur
 
 - Melihat daftar acara yang akan datang (*upcoming events*)
@@ -15,43 +30,68 @@ Aplikasi berbasis web untuk mengelola acara (*event*) dan pendaftaran peserta. P
 
 ## Tech Stack
 
-- **Framework:** Next.js (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Data:** mock data / JSON (tahap awal)
-- **Package Manager:** npm
+| Teknologi | Fungsi |
+|-----------|--------|
+| **Next.js (App Router)** | *Framework* React untuk routing, rendering, dan struktur aplikasi web. |
+| **TypeScript** | Bahasa ber-*type* agar kode lebih aman dan mudah dipelihara. |
+| **Tailwind CSS** | *Utility-first CSS* untuk tampilan responsif dan konsisten. |
+| **Node.js + npm** | *Runtime* dan *package manager* untuk *development* & *build*. |
+| **Mock data (JSON)** | Sumber data tahap awal sebelum integrasi basis data. |
+| **Git & GitHub** | *Version control*, kolaborasi, dan alur *pull request*. |
 
-## Prasyarat
+## Tutorial Instalasi (Singkat)
 
-- Node.js 18+
-- npm 9+
-
-## Instalasi
+**Prasyarat:** Node.js 18+, npm 9+, Git.
 
 ```bash
+# 1. Clone repositori
+git clone https://github.com/frielssa/rpl-event.git
+cd rpl-event
+
+# 2. Install dependencies
 npm install
-```
 
-## Menjalankan
-
-```bash
+# 3. Jalankan development server
 npm run dev
 ```
 
 Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-## Struktur Folder
+> Catatan: perintah di atas berlaku setelah kode aplikasi di-*scaffold* (lihat `docs/product-backlog.md` PB-02). Saat ini repositori berfokus pada dokumentasi.
+
+**Perintah lain:**
+
+| Perintah | Fungsi |
+|----------|--------|
+| `npm run build` | Build untuk produksi |
+| `npm run lint` | Memeriksa kualitas kode |
+
+## Struktur Dokumen
 
 ```
 rpl-event/
-├── src/
-│   ├── app/          # halaman & routing (App Router)
-│   ├── components/   # komponen UI
-│   ├── lib/          # helper & utilitas
-│   └── data/         # mock data & model
-├── docs/             # dokumentasi proyek
-│   └── elisitasi/    # catatan & pedoman wawancara, user story
-└── README.md
+├── README.md                    # gambaran proyek (dokumen ini)
+├── aturan proyek.md             # aturan & pedoman pengembangan
+├── PRD.md                       # product requirements document
+├── .github/
+│   └── pull_request_template.md # template & panduan PR
+└── docs/
+    ├── elisitasi/
+    │   ├── catatan-wawancara.md
+    │   ├── pedoman-wawancara.md
+    │   └── user-story.md
+    ├── uml/
+    │   ├── use-case.md
+    │   ├── skenario-use-case.md
+    │   ├── activity-pendaftaran-acara.md
+    │   ├── activity-pembatalan-pendaftaran.md
+    │   ├── activity-kelola-acara.md
+    │   ├── activity-ekspor-peserta.md
+    │   ├── verifikasi-diagram.md
+    │   └── rendered/            # hasil render SVG
+    ├── kesepakatan-tim.md
+    ├── product-backlog.md
+    └── srs.md
 ```
 
 ## Model Data
