@@ -11,10 +11,10 @@ flowchart TD
     D -- Tidak --> E[Tampilkan pesan kesalahan]
     E --> C
     D -- Ya --> F{Kuota tersedia?}
-    F -- Tidak --> G[Tampilkan "Kuota penuh"]
+    F -- Tidak --> G[Tampilkan Kuota penuh]
     G --> Z((Selesai))
     F -- Ya --> H{Email sudah terdaftar di acara ini?}
-    H -- Ya --> I[Tampilkan "Sudah terdaftar"]
+    H -- Ya --> I[Tampilkan Sudah terdaftar]
     I --> Z
     H -- Tidak --> J[Simpan data pendaftaran]
     J --> K[Generate kode tiket unik]
@@ -36,3 +36,7 @@ flowchart TD
 - **FR:** FR-04, FR-05, FR-06, FR-07
 - **User Story:** US-03, US-04
 - **Use Case:** UC-03 (beserta UC-13 & UC-14)
+
+## Hasil Render (Verifikasi Visual)
+
+![Activity Diagram Pendaftaran Acara](rendered/activity-pendaftaran-acara.svg)

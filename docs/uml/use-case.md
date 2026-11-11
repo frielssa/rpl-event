@@ -81,3 +81,7 @@ Mermaid **tidak menyediakan notasi diagram *use case* UML secara native**. Diagr
 - Konsisten dengan `docs/srs.md` (FR-01…FR-13) dan `docs/elisitasi/user-story.md` (US-01…US-13).
 - Skenario rinci tiap *use case*: `docs/uml/skenario-use-case.md`.
 - Verifikasi diagram: `docs/uml/verifikasi-diagram.md`.
+
+## Hasil Render (Verifikasi Visual)
+
+![Use Case Diagram](rendered/use-case.svg)
