@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f6f1e7;
+  --surface: #fffdf8;
+  --ink: #1c1b1a;
+  --muted: #5f5b54;
+  --line: #d8d0c0;
+  --cobalt: #2d4bff;
+  --butter: #ffc53d;
+  --coral: #ff6b57;
+  --danger: #b83227;
+  --butter-soft: #fff2cc;
+  --link: #2d4bff;
+  --focus: #2d4bff;
+  --on-tone-dark: #1c1b1a;
+  --on-tone-light: #fffdf8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #111214;
+    --surface: #1a1b20;
+    --ink: #f3efe6;
+    --muted: #a9a49a;
+    --line: #2f3037;
+    --danger: #ff8c78;
+    --butter-soft: #1d1911;
+    --link: #8c9eff;
+    --focus: #8c9eff;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-cobalt: var(--cobalt);
+  --color-butter: var(--butter);
+  --color-coral: var(--coral);
+  --color-danger: var(--danger);
+  --color-butter-soft: var(--butter-soft);
+  --color-link: var(--link);
+  --color-on-tone-dark: var(--on-tone-dark);
+  --color-on-tone-light: var(--on-tone-light);
+  --font-sans: var(--font-plus-jakarta);
+  --font-display: var(--font-bricolage);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-plus-jakarta), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--cobalt);
+  color: var(--on-tone-light);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.ticket-barcode {
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 2px,
+    transparent 2px 4px,
+    currentColor 4px 5px,
+    transparent 5px 8px
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ticket-enter {
+    animation: ticket-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes ticket-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
 }

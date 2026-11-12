@@ -85,9 +85,9 @@ rpl-event/
 │   └── pull_request_template.md # template & panduan PR
 ├── src/
 │   ├── app/                     # halaman & routing (App Router)
-│   ├── components/              # komponen UI (menyusul)
-│   ├── lib/                     # helper & utilitas (menyusul)
-│   └── data/                    # mock data & model (menyusul)
+│   ├── components/              # komponen UI (header, footer, kartu acara)
+│   ├── lib/                     # helper & utilitas (logika acara)
+│   └── data/                    # mock data & model (types, events)
 ├── public/                      # aset statis
 └── docs/
     ├── elisitasi/
@@ -120,7 +120,8 @@ rpl-event/
 
 - [x] Inisialisasi repositori & dokumentasi
 - [x] *Scaffold* Next.js + Tailwind (via Bun)
-- [ ] Halaman daftar & detail acara
+- [x] Halaman katalog acara (`upcoming`)
+- [ ] Halaman detail acara
 - [ ] Alur pendaftaran + *generate* tiket
 - [ ] *Dashboard* admin (CRUD acara)
 - [ ] Ekspor data peserta
