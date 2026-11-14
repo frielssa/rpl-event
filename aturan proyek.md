@@ -35,6 +35,7 @@ rpl-event/
 ├── docs/                      # dokumentasi proyek
 │   ├── elisitasi/             # catatan & pedoman wawancara, user story
 │   ├── uml/                   # diagram & skenario
+│   ├── data-model.md          # model data & ERD
 │   ├── kesepakatan-tim.md
 │   ├── product-backlog.md
 │   └── srs.md
