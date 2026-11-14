@@ -2,6 +2,8 @@
 
 Dokumen ini menjabarkan **skenario** setiap *use case* pada `docs/uml/use-case.md` secara terstruktur.
 
+> **Catatan model data:** istilah “mengurangi/memperbarui sisa kuota” pada UC-03 dan UC-05 adalah perilaku bisnis. Sisa kuota tidak disimpan sebagai kolom; nilainya dihitung ulang dari `Registration` aktif. Lihat `docs/data-model.md`.
+
 ## Format Skenario
 
 Setiap skenario memuat: **Aktor**, **Tujuan**, **Pra-kondisi**, **Pasca-kondisi**, **Alur Utama**, **Alur Alternatif**, dan **Kebutuhan Terkait**.
