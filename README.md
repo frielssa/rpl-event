@@ -103,6 +103,7 @@ rpl-event/
     │   ├── activity-ekspor-peserta.md
     │   ├── verifikasi-diagram.md
     │   └── rendered/            # hasil render SVG
+    ├── data-model.md            # model data & ERD
     ├── kesepakatan-tim.md
     ├── product-backlog.md
     └── srs.md
@@ -112,9 +113,11 @@ rpl-event/
 
 | Entity | Atribut Utama |
 |--------|---------------|
-| `Event` | id, nama, deskripsi, lokasi, tanggal, kuota, tiketTerjual, status |
+| `Event` | id, nama, deskripsi, lokasi, tanggal, kuota, status |
 | `User` | id, nama, email, peran (peserta/admin) |
-| `Registration` | id, eventId, userId, kodeTiket, status, tanggalDaftar |
+| `Registration` | id, eventId, userId, namaPeserta, email, noHp, kodeTiket, status, tanggalDaftar |
+
+> Atribut turunan seperti `tiketTerjual`, `sisaKuota`, dan persentase keterisian tidak disimpan; nilainya dihitung dari `Registration`. Lihat [`docs/data-model.md`](docs/data-model.md) untuk ERD, relasi, dan constraint.
 
 ## Roadmap
 
