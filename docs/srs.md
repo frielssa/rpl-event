@@ -1,8 +1,9 @@
 # Software Requirements Specification (SRS) — RPL Event
 
 **Nama Proyek:** RPL Event — Aplikasi Manajemen & Pendaftaran Acara
-**Versi Dokumen:** 1.0
+**Versi Dokumen:** 1.1
 **Tanggal:** 11 November 2026
+**Revisi Terakhir:** 14 November 2026
 **Mengacu pada:** IEEE 830 / ISO/IEC/IEEE 29148 (gaya ringkas)
 
 ---
@@ -44,6 +45,7 @@ Aplikasi **RPL Event** memungkinkan:
 - `docs/elisitasi/pedoman-wawancara.md` — pedoman & teknik elisitasi.
 - `docs/elisitasi/catatan-wawancara.md` — hasil wawancara (simulasi).
 - `docs/elisitasi/user-story.md` — daftar *user story* & prioritas.
+- `docs/data-model.md` — model data rinci, relasi, constraint, dan ERD (Mermaid).
 
 ### 1.5 Overview (Ikhtisar Dokumen)
 
@@ -161,6 +163,8 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 
 ## 6. Model & Kamus Data
 
+Model data rinci, relasi, constraint, dan ERD tersedia di `docs/data-model.md`.
+
 ### 6.1 Entity `Event`
 
 | Atribut | Tipe | Wajib | Keterangan |
@@ -169,9 +173,9 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 | `nama` | string | Ya | Nama acara. |
 | `deskripsi` | text | Ya | Deskripsi acara. |
 | `lokasi` | string | Ya | Lokasi acara. |
-| `tanggal` | date | Ya | Tanggal pelaksanaan. |
+| `tanggal` | datetime | Ya | Tanggal & waktu pelaksanaan. |
 | `kuota` | integer | Ya | Kapasitas maksimum (> 0). |
-| `tiketTerjual` | integer | Ya | Jumlah pendaftar aktif. |
+| `tiketTerjual` | integer | — (turunan) | **Nilai turunan** (jumlah pendaftar aktif); dihitung dari `Registration`, tidak disimpan di tabel `Event`. |
 | `status` | enum | Ya | `upcoming` / `ongoing` / `done`. |
 
 ### 6.2 Entity `User`
@@ -197,16 +201,18 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 | `status` | enum | Ya | `aktif` / `dibatalkan`. |
 | `tanggalDaftar` | datetime | Ya | Waktu pendaftaran. |
 
+> **Catatan model:** `email` pada `Registration` unik per acara untuk pendaftaran aktif (BR-02), sedangkan `kodeTiket` unik global (BR-04). `tanggalBatal` dapat ditambahkan sebagai atribut audit opsional. Atribut turunan seperti `tiketTerjual`, `sisaKuota`, dan persentase keterisian tidak disimpan; model rinci & ERD ada di `docs/data-model.md`.
+
 ---
 
 ## 7. Aturan Bisnis (Business Rules)
 
-- **BR-01:** Pendaftaran hanya diterima jika `tiketTerjual < kuota`.
+- **BR-01:** Pendaftaran hanya diterima jika jumlah pendaftar aktif < `kuota` (sisa kuota > 0).
 - **BR-02:** Satu email tidak boleh mendaftar dua kali pada acara yang sama.
 - **BR-03:** `kuota` tidak boleh lebih kecil dari jumlah peserta aktif.
 - **BR-04:** Kode tiket harus unik untuk setiap pendaftaran.
 - **BR-05:** Pembatalan hanya boleh dilakukan sebelum acara berlangsung.
-- **BR-06:** Pembatalan mengubah status menjadi `dibatalkan` dan mengurangi `tiketTerjual`.
+- **BR-06:** Pembatalan mengubah status menjadi `dibatalkan` dan mengurangi jumlah pendaftar aktif (kuota tersedia bertambah).
 - **BR-07:** Acara yang sudah lewat tidak ditampilkan pada daftar *upcoming*.
 
 ---
@@ -245,3 +251,4 @@ RPL Event adalah aplikasi web mandiri (*stand-alone*) yang menggantikan proses p
 | Versi | Tanggal | Perubahan | Penulis |
 |-------|---------|-----------|---------|
 | 1.0 | 11-11-2026 | Versi awal SRS | Tim RPL Event |
+| 1.1 | 14-11-2026 | Tandai atribut turunan, perjelas tipe tanggal, tautkan model data & ERD | Tim RPL Event |
